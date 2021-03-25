@@ -9,6 +9,8 @@ const GlobalStyles = createGlobalStyle`
     --lt-grey: #e2e1e1;
     --black: #222;
     --border-color: #cbccce;
+    --nba: #1a4284;
+    --mlb: #b90d3c;
   }
   * {
     box-sizing: border-box;
@@ -29,6 +31,46 @@ const GlobalStyles = createGlobalStyle`
   }
   .uppercase {
     text-transform: uppercase;
+  }
+
+  .button-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin: 40px auto 40px auto;
+
+    a {
+      &:first-of-type {
+        margin-right: 30px;
+      }
+    }
+  }
+
+  .button {
+    display: inline-block;
+    text-decoration: none;
+    height: 48px;
+    line-height: 48px;
+    max-width: 200px;
+    width: 100%;
+    width: 100%;
+    color: #f2f5f5;
+    background: var(--dk-grey);
+    border-radius: 6px;
+    transition: all 0.25s;
+
+    &:hover {
+      background: var(--body);
+    }
+
+    &__nba {
+      background: var(--nba);
+    }
+
+    &__mlb {
+      background: var(--mlb);
+    }
   }
 `;
 

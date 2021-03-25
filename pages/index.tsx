@@ -1,26 +1,32 @@
-import Head from 'next/head';
-import styled, { createGlobalStyle } from 'styled-components';
+import React from 'react';
+import styled from 'styled-components';
+import Link from 'next/link';
 
-const GlobalStyle = createGlobalStyle`
-  font-size: 4rem;
-`;
 const Container = styled.div`
   text-align: center;
-  max-width: 400px;
+  max-width: 800px;
   margin: 0 auto;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `;
 
 function HomePage() {
   return (
-    <>
-      <Head>
-        <title>Scoreboard</title>
-      </Head>
-        <Container>
-          <GlobalStyle />
-          <h1>Hello, world!</h1>
-        </Container>
-    </>
+    <Container>
+      <h1>Barstool Challenge</h1>
+      <p>Click below to see a scoreboard:</p>
+      <div className="button-wrapper">
+        <Link href="/nba">
+          <a className="button button__nba">NBA</a>
+        </Link>
+        <Link href="/mlb">
+          <a className="button button__mlb">MLB</a>
+        </Link>
+      </div>
+    </Container>
   )
 }
 
