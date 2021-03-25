@@ -29,8 +29,8 @@ export default function NBAPage({ data }: Props) {
     } catch (err) {
       console.log(err);
     } finally {
-      //timeout = () => setTimeout(ping, 2000);
-      //timeout();
+      timeout = () => setTimeout(ping, 2000);
+      timeout();
     }
   }
 
@@ -44,13 +44,13 @@ export default function NBAPage({ data }: Props) {
   )
 }
 
-export async function getServerSideProps(ctx) {
+export async function getServerSideProps() {
   const response = await axios.get(`${process.env.SERVER_HOST}/api/nba`);
   const data = response && response.data;
 
   return {
     props: {
-      data,
+      data
     }
   }
 }

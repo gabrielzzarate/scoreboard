@@ -129,7 +129,7 @@ export default function Team({ full_name, team_id, league, scores, ...props }: P
         <div className="team__details--logo" />
       </div>
       {scores && scores.length > 0 && scores.map((item) => (
-        <div className="team__score">{item}</div>
+        <div className="team__score" key={`score-${item}`}>{item}</div>
       ))}
       {total && <div className="team__total">{total}</div>}
     </StyledTeam>

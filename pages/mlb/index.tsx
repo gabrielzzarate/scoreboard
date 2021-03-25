@@ -25,8 +25,8 @@ export default function MLBPage({ data }) {
     } catch (err) {
       console.log(err);
     } finally {
-      //timeout = () => setTimeout(ping, 2000);
-      //timeout();
+      timeout = () => setTimeout(ping, 2000);
+      timeout();
     }
   }
 
@@ -40,13 +40,13 @@ export default function MLBPage({ data }) {
   )
 }
 
-export async function getServerSideProps(ctx) {
+export async function getServerSideProps() {
   const response = await axios.get(`${process.env.SERVER_HOST}/api/mlb`);
   const data = response && response.data;
 
   return {
     props: {
-      data,
+      data
     }
   }
 }

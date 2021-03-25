@@ -3,11 +3,6 @@ import styled, { css } from 'styled-components';
 import Team from '../Team';
 import { GameType } from '../../types';
 
-// todo: dynamic title over?
-// todo: mobile layout
-// todo: note stuff
-// clear timeout useEffect
-
 const Container = styled.div`
   max-width: 800px;
   height: 100%;
@@ -25,8 +20,11 @@ const StyledScoreboard = styled.div`
   display: grid;
 	grid-template-rows: 2rem minmax(3rem, 1fr) minmax(3rem, 1fr) 2rem;
   grid-template-columns: minmax(8rem, 1fr) repeat(4, 2rem) 6rem;
-	/* grid-template-columns: minmax(8rem, 1fr) 6rem; */
   overflow: hidden;
+
+  @media only screen and (max-width: 630px) {
+    grid-template-columns: 1fr 0rem;
+  }
 
   .title {
     grid-column: 1 / span 1;
@@ -42,10 +40,6 @@ const StyledScoreboard = styled.div`
 		@media screen and (min-width: 630px) {
 			grid-column: 1 / span 2;
 		}
-
-    /* @media only screen and (min-width: $break) {
-			grid-column: 0 / span 2;
-		} */
   }
 
   .periods {
@@ -103,10 +97,6 @@ const StyledScoreboard = styled.div`
   ${(props) => props.league && props.league === 'MLB' && css`
     grid-template-columns: minmax(1rem, 14.5rem) repeat(9, 2rem) 6rem;
 
-    @media only screen and (max-width: 630px) {
-      grid-template-columns: 1fr 0rem;
-	  }
-
     .title {
       grid-column: 1 / span 1;
       
@@ -134,9 +124,9 @@ export default function Scoreboard({ home_team, away_team, away_period_scores, h
       <StyledScoreboard league={props.league}>
         <div className="title">{event_information && event_information.status && event_information.status === 'completed' ? 'Final' : 'In Progress'}</div>
         <div className="periods">
-          {home_period_scores && home_period_scores.length > 0 && Array.from({ length: home_period_scores.length }).map((_, i) => {
+          {home_period_scores && home_period_scores.length > 0 && Array.from({ length: home_period_scores.length }).map((item, i) => {
             return (
-              <span>{i + 1}</span>
+              <span key={`periods-${i}`}>{i + 1}</span>
             )
           })}
         </div>
@@ -147,12 +137,8 @@ export default function Scoreboard({ home_team, away_team, away_period_scores, h
         {home_team && <Team {...home_team} scores={home_period_scores} winner league={props.league} />}
 
         <div className="note">
-          {/* <span className="uppercase">
-            {home_team && home_team.division}
-          </span> 
-          <span>{home_team && home_team.conference}</span>   */}
           <span>
-          {event_information && event_information.season_type && event_information.season_type === 'post' ? 'Post Season' : 'Regular Season'}
+            {event_information && event_information.season_type && event_information.season_type === 'post' ? 'Post Season' : 'Regular Season'}
           </span>
         </div>
       </StyledScoreboard>

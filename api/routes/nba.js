@@ -2,12 +2,7 @@ const mongoose = require('mongoose');
 const Game = mongoose.model('games');
 const Api = require('../scoreboard');
 const NBA_ID = '6c974274-4bfc-4af8-a9c4-8b926637ba74';
-
-function timeSince(date) {
-  var seconds = Math.floor((new Date().getTime() - date) / 1000);
-
-  return seconds;
-}
+const timeSince = require('../util/timeSince');
 
 const nba = new Api(NBA_ID);
 
